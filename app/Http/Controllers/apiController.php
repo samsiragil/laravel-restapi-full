@@ -46,4 +46,20 @@ class apiController extends Controller
             ], 200);
         }
     }
+
+    public function delete_product($id){
+        $product_record = ProductModel::firstWhere('id',$id);
+        if($product_record){
+            ProductModel::destroy($id);
+            return response([
+                'success' => true,
+                'message' => 'Delete product was successfully'
+            ], 200);
+        }else{
+            return response([
+                'success' => false,
+                'message' => 'Product not found'
+            ], 200);
+        }
+    }
 }
